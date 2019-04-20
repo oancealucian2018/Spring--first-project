@@ -6,16 +6,35 @@
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
    <bean name = "worker" class = "production.Worker">
-     <!--<constructor-arg index = "0" value ="Carpenter"/>-->
-     <!--<constructor-arg index = "1" value ="50"/>-->
+    <constructor-arg index = "0" value ="Carpenter"/>
+     <constructor-arg index = "1" value ="50"/>
+     <constructor-arg index = "2" ref ="workerMotto"/>
+      <property name = "tools" ref ="tools"/>
    </bean>
 
    <bean name = "workerMotto" class="production.WorkerMotto">
-      <!--&lt;!&ndash;<constructor-arg value = "No worker without tool"/>&ndash;&gt;-->
+     <constructor-arg value = "No worker without tool"/>
    </bean>
 
-   <bean name="tool" class = "production.Tool">
+   <!--<bean name="tool" class = "production.Tool">-->
+   <!--</bean>-->
 
+   <bean name="hammer" class ="production.Tool">
+      <constructor-arg index ="0" value ="2"/>
+      <constructor-arg index ="1" value ="hammer"/>
+   </bean>
+
+   <bean name="saw" class ="production.Tool">
+      <constructor-arg index ="0" value ="1"/>
+      <constructor-arg index ="1" value ="saw"/>
+   </bean>
+   <bean name = "tools" class = "java.util.ArrayList">
+      <constructor-arg>
+         <list>
+            <ref bean = "hammer"/>
+            <ref bean = "saw"/>
+         </list>
+      </constructor-arg>
    </bean>
 
 </beans>
